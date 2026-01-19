@@ -1,0 +1,439 @@
+/* ===== RESET ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== HEADER ===== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: #222;
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 175px;
+}
+
+.logo a {
+  display: inline-flex;
+}
+
+/* ===== MAIN GRID ===== */
+
+.grid {
+  padding-top: 200px;
+}
+
+/* ===== GENERIC ROW ===== */
+
+.row {
+  width: 100%;
+  min-height: 400px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* ===== ROW 1 ===== */
+
+.row1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*background-image: url("images/image1.jpg");*/
+  background: #666;
+}
+
+.row1-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.row1 .headline {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.row1 .divider {
+  width: 400px;
+  height: 3px;
+  background: white;
+  margin: 20px 0;
+}
+
+.row1 .subtext {
+  font-size: 1.5rem;
+}
+
+/* ===== ROW 2 ===== */
+
+.row2 {
+  background: #b71c1c;
+  padding: 50px 0;
+}
+
+.row2-content {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Row 2 header */
+.row2-header {
+  text-align: center;
+  color: white;
+}
+
+.row2-header .headline {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.row2-header .divider {
+  display: block;
+  width: 180px;
+  height: 3px;
+  background-color: white;
+
+  margin: 25px auto 10px auto; /* space above + below */
+}
+
+
+/* ===== INFO ITEMS (no boxes) ===== */
+
+.row2-boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 30px;
+}
+
+/* individual item */
+.row2 .box {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  background: none;
+  padding: 0;
+
+  color: white;
+  text-align: center;
+}
+
+/* larger icons */
+.row2 .box img {
+  width: 120px;   /* 2–3x larger */
+  height: auto;
+}
+
+/* title */
+.row2 .box-title {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+/* description */
+.row2 .box-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+
+/* ===== ROW 3 ===== */
+
+.row3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.row3 .col {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-size: cover;
+  background-position: center;
+}
+
+.row3 .col1 { background-image: url("images/col1.jpg"); }
+.row3 .col2 { background-image: url("images/col2.jpg"); }
+.row3 .col3 { background-image: url("images/col3.jpg"); }
+
+.row3 .col::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.row3 .col-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.row3 .headline {
+  font-size: 2rem;
+}
+
+.row3 .divider {
+  width: 350px;
+  height: 3px;
+  background: white;
+  margin: 15px 0;
+}
+
+.row3 .subtext {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+/* ===== ROW 4 ===== */
+
+.row4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*background-image: url("images/image4.jpg");*/
+  background: #FFF;
+}
+
+.row4-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: black;
+}
+
+.row4 .headline {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.row4 .divider {
+  width: 400px;
+  height: 3px;
+  background: black;
+  margin: 20px 0;
+}
+
+.row4 .subtext {
+  font-size: 1.5rem;
+}
+
+/* ===== ROW 5 ===== */
+
+.row5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*background-image: url("images/image5.jpg");*/
+  background: #000;
+}
+
+.row5-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.row5 .headline {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.row5 .divider {
+  width: 400px;
+  height: 3px;
+  background: white;
+  margin: 20px 0;
+}
+
+.row5 .subtext {
+  font-size: 1.5rem;
+}
+
+/* ===== ROW 6 ===== */
+
+.row6 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #FFF; /* or an image if you want */
+  min-height: 300px;
+}
+
+.row6-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: black;
+}
+
+.row6 .headline {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.row6 .divider {
+  width: 400px;
+  height: 3px;
+  background: black;
+  margin-top: 20px;
+}
+
+/* ===== CONTACT FORM ===== */
+
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: -80px;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* rows */
+.form-row {
+  width: 100%;
+}
+
+/* two-column rows */
+.form-row.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* inputs & textarea */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 0.95rem;
+
+  border: none;
+  background: #f2f2f2;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* button */
+.contact-form button {
+  align-self: flex-start;
+
+  padding: 14px 30px;
+  background: #b71c1c;
+  color: white;
+
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  opacity: 0.9;
+}
+
+/* ===== FOOTER ===== */
+
+.site-footer {
+  background: #FFF;
+  padding: 10px 0;
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+/* shared column styles */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  color: black;
+  font-size: 0.95rem;
+}
+
+/* logo column */
+.footer-logo img {
+  width: 160px;
+  height: auto;
+}
+
+/* footer headings */
+.footer-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* footer text */
+.footer-text {
+  line-height: 1.6;
+  font-weight: 300;
+}
