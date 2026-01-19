@@ -193,9 +193,9 @@ html, body {
   background-position: center;
 }
 
-.row3 .col1 { background-image: url("images/col1.jpg"); }
-.row3 .col2 { background-image: url("images/col2.jpg"); }
-.row3 .col3 { background-image: url("images/col3.jpg"); }
+.row3 .col1 { background-image: url("images/col1.png"); }
+.row3 .col2 { background-image: url("images/col2.png"); }
+.row3 .col3 { background-image: url("images/col3.png"); }
 
 .row3 .col::before {
   content: "";
@@ -437,3 +437,4 @@ html, body {
   line-height: 1.6;
   font-weight: 300;
 }
+
