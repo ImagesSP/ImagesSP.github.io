@@ -140,33 +140,40 @@
 	  </div>
 	</div>
 	
-	<!-- modify this form HTML and place wherever you want your form -->
-	<form action="https://formspree.io/f/xpqqrloo" method="POST" class="contact-form">
-
+	<form
+	  id="contactForm"
+	  class="contact-form"
+	  action="https://script.google.com/macros/s/AKfycbxIedDqttBbi_95aEcG-0VgLqMHXNDcKiw1s10panOmQLnUMyCKbpHh9wHJ0jGWTkn0/exec"
+	  method="POST"
+	>
+	  <!-- First + Last Name -->
 	  <div class="form-row two-col">
-		<input type="text" name="first_name" placeholder="First Name" required>
-		<input type="text" name="last_name" placeholder="Last Name" required>
+		<input name="firstname" placeholder="First Name" required>
+		<input name="lastname" placeholder="Last Name" required>
 	  </div>
 
+	  <!-- Subject -->
 	  <div class="form-row">
-		<input type="text" name="subject" placeholder="Subject" required>
+		<input name="subject" placeholder="Subject" required>
 	  </div>
 
+	  <!-- Email + Phone -->
 	  <div class="form-row two-col">
-		<input type="email" name="email" placeholder="Email Address" required>
-		<input type="tel" name="phone" placeholder="Phone Number">
+		<input name="email" type="email" placeholder="Email" required>
+		<input name="phone" placeholder="Phone">
 	  </div>
 
+	  <!-- Message -->
 	  <div class="form-row">
-		<textarea name="message" placeholder="Message" required></textarea>
+		<textarea name="message" placeholder="Message"></textarea>
 	  </div>
 
-	  <!-- Honeypot spam protection -->
-	  <input type="text" name="_gotcha" style="display:none">
-
-	  <button type="submit">Send Message</button>
-
+	  <button type="submit">Send</button>
 	</form>
+	
+	<div id="formSuccess" class="form-popup">
+	  Thanks! Your message has been sent.
+	</div>
 
   </div>
   
@@ -204,6 +211,36 @@
   </div>
 </footer>
 
+<script>
+	const form = document.getElementById("contactForm");
+	const popup = document.getElementById("formSuccess");
+
+	form.addEventListener("submit", function (e) {
+	  e.preventDefault(); // 🔑 prevent page reload
+
+	  const formData = new FormData(form);
+
+	  fetch(form.action, {
+		method: "POST",
+		body: formData
+	  })
+	  .then(response => response.json())
+	  .then(data => {
+		if (data.status === "success") {
+		  form.reset();                 // ✅ clear form
+		  popup.classList.add("show");  // ✅ show popup
+
+		  setTimeout(() => {
+			popup.classList.remove("show");
+		  }, 3000);
+		}
+	  })
+	  .catch(err => {
+		alert("Something went wrong. Please try again.");
+		console.error(err);
+	  });
+	});
+</script>
+
 </body>
 </html>
-
