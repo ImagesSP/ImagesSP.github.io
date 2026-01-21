@@ -63,7 +63,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /*background-image: url("images/image1.jpg");*/
+  /*background-image: url("images/banner.png");*/
   background: #666;
 }
 
@@ -391,6 +391,25 @@ html, body {
   opacity: 0.9;
 }
 
+.form-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #2e7d32;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 9999;
+}
+
+.form-popup.show {
+  opacity: 1;
+}
+
 /* ===== FOOTER ===== */
 
 .site-footer {
@@ -437,4 +456,3 @@ html, body {
   line-height: 1.6;
   font-weight: 300;
 }
-
