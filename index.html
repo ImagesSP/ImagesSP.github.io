@@ -230,44 +230,12 @@
 
     grecaptcha.execute('6LfuIlMsAAAAAIBNibPY3-PKAYbN_sC3G70kpKVM', {action: 'submit'})
       .then(function(token) {
-        const data = {};
-        const formData = new FormData(form);
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
-
-        data.recaptchaToken = token;
-
-        fetch(form.action, {
-          method: "POST",
-          headers: {
-            "Content-Type": "text/plain"
-          },
-          body: JSON.stringify(data)
-        })
-        .then(r => r.text())
-        .then(res => {
-          try {
-            const parsed = JSON.parse(res);
-            if (parsed.status === "success") {
-              form.reset();
-              popup.classList.add("show");
-              setTimeout(() => popup.classList.remove("show"), 3000);
-            } else {
-              alert("Blocked as spam.");
-            }
-          } catch (err) {
-            console.error("Invalid JSON:", res);
-            alert("Unexpected response.");
-          }
-        })
-        .catch(err => {
-          console.error("Fetch failed:", err);
-          alert("Something went wrong.");
-        });
+        document.getElementById("recaptchaToken").value = token;
+        form.submit(); // 🔥 native form POST — no fetch, no CORS, no preflight
       });
   });
 </script>
 
 </body>
 </html>
+
