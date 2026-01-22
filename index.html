@@ -143,9 +143,18 @@
 	<form
 	  id="contactForm"
 	  class="contact-form"
-	  action="https://script.google.com/macros/s/AKfycbxIedDqttBbi_95aEcG-0VgLqMHXNDcKiw1s10panOmQLnUMyCKbpHh9wHJ0jGWTkn0/exec"
+	  action="https://script.google.com/macros/s/AKfycbzLvSyw9Vp1bpoasXS0KcrSD5FxIQVZ9z9N8xkJeV5_4qA-ze8EKUcV593dDVZEBgC5/exec"
 	  method="POST"
 	>
+	
+	  <!-- Honeypot field (hidden from humans) -->
+	  <div style="display:none;">
+	    <input type="text" name="website" tabindex="-1" autocomplete="off">
+	  </div>
+	  
+	  <!-- reCAPTCHA token -->
+	  <input type="hidden" name="recaptchaToken" id="recaptchaToken">
+
 	  <!-- First + Last Name -->
 	  <div class="form-row two-col">
 		<input name="firstname" placeholder="First Name" required>
@@ -211,35 +220,51 @@
   </div>
 </footer>
 
+<script src="https://www.google.com/recaptcha/api.js?render=6LfuIlMsAAAAAIBNibPY3-PKAYbN_sC3G70kpKVM"></script>
 <script>
-	const form = document.getElementById("contactForm");
-	const popup = document.getElementById("formSuccess");
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LfuIlMsAAAAAIBNibPY3-PKAYbN_sC3G70kpKVM', {action: 'submit'})
+      .then(function(token) {
+        document.getElementById('recaptchaToken').value = token;
+      });
+  });
+</script>
 
-	form.addEventListener("submit", function (e) {
-	  e.preventDefault(); // 🔑 prevent page reload
+<script>
+  const form = document.getElementById("contactForm");
+  const popup = document.getElementById("formSuccess");
 
-	  const formData = new FormData(form);
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent reload
 
-	  fetch(form.action, {
-		method: "POST",
-		body: formData
-	  })
-	  .then(response => response.json())
-	  .then(data => {
-		if (data.status === "success") {
-		  form.reset();                 // ✅ clear form
-		  popup.classList.add("show");  // ✅ show popup
+    // 🔥 REGENERATE A FRESH TOKEN BEFORE SUBMITTING
+    grecaptcha.execute('6LfuIlMsAAAAAIBNibPY3-PKAYbN_sC3G70kpKVM', {action: 'submit'})
+      .then(function(token) {
+        document.getElementById('recaptchaToken').value = token;
 
-		  setTimeout(() => {
-			popup.classList.remove("show");
-		  }, 3000);
-		}
-	  })
-	  .catch(err => {
-		alert("Something went wrong. Please try again.");
-		console.error(err);
-	  });
-	});
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === "success") {
+            form.reset();
+            popup.classList.add("show");
+
+            setTimeout(() => {
+              popup.classList.remove("show");
+            }, 3000);
+          }
+        })
+        .catch(err => {
+          alert("Something went wrong. Please try again.");
+          console.error(err);
+        });
+      });
+  });
 </script>
 
 </body>
