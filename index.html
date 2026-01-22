@@ -140,11 +140,14 @@
 	  </div>
 	</div>
 	
+	<iframe name="hiddenFrame" style="display:none;"></iframe>
+	
 	<form
 	  id="contactForm"
 	  class="contact-form"
 	  action="https://script.google.com/macros/s/AKfycbzZHRrjWHEL7o6QNlSXYQQ3RxkM1LZWu6ge-ybtOBaDNJKVUly0uo8o7KMk99SZ0nvJ/exec"
 	  method="POST"
+	  target="hiddenFrame"
 	>
 	
 	  <!-- Honeypot field (hidden from humans) -->
@@ -236,7 +239,20 @@
   });
 </script>
 
+<script>
+  const popup = document.getElementById("formSuccess");
+
+  document.querySelector("iframe[name='hiddenFrame']").addEventListener("load", () => {
+    // Ignore the first load (iframe loads empty on page load)
+    if (!window._iframeLoadedOnce) {
+      window._iframeLoadedOnce = true;
+      return;
+    }
+
+    popup.classList.add("show");
+    setTimeout(() => popup.classList.remove("show"), 3000);
+  });
+</script>
+
 </body>
 </html>
-
-
