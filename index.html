@@ -234,14 +234,11 @@
     grecaptcha.execute('6LfuIlMsAAAAAIBNibPY3-PKAYbN_sC3G70kpKVM', {action: 'submit'})
       .then(function(token) {
         document.getElementById("recaptchaToken").value = token;
-        form.submit(); // 🔥 native form POST — no fetch, no CORS, no preflight
+        form.submit(); // native POST into iframe
       });
   });
-</script>
 
-<script>
-  const popup = document.getElementById("formSuccess");
-
+  // Handle iframe load → show popup + clear form
   document.querySelector("iframe[name='hiddenFrame']").addEventListener("load", () => {
     // Ignore the first load (iframe loads empty on page load)
     if (!window._iframeLoadedOnce) {
@@ -249,6 +246,10 @@
       return;
     }
 
+    // Clear the form after successful submission
+    form.reset();
+
+    // Show popup
     popup.classList.add("show");
     setTimeout(() => popup.classList.remove("show"), 3000);
   });
@@ -256,3 +257,4 @@
 
 </body>
 </html>
+
