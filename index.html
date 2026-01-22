@@ -182,10 +182,6 @@
 
 	  <button type="submit">Send</button>
 	</form>
-	
-	<div id="formSuccess" class="form-popup">
-	  Thanks! Your message has been sent.
-	</div>
 
   </div>
   
@@ -255,13 +251,9 @@
   });
 </script>
 
-<script>
-  document.querySelector("iframe[name='hiddenFrame']").addEventListener("load", () => {
-    console.log("IFRAME LOADED");
-  });
-</script>
+<div id="formSuccess" class="form-popup">
+  Thanks! Your message has been sent.
+</div>
 
 </body>
 </html>
-
-
