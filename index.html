@@ -243,26 +243,32 @@
         data.recaptchaToken = token;
 
         fetch(form.action, {
-          method: "POST",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-          },
-          body: JSON.stringify(data)
-        })
-        .then(r => r.json())
-        .then(res => {
-          if (res.status === "success") {
-            form.reset();
-            popup.classList.add("show");
-            setTimeout(() => popup.classList.remove("show"), 3000);
-          } else {
-            alert("Blocked as spam.");
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          alert("Something went wrong.");
-        });
+		  method: "POST",
+		  headers: {
+			"Content-Type": "text/plain"
+		  },
+		  body: JSON.stringify(data)
+		})
+		.then(r => r.text()) // ← use .text() instead of .json() to avoid parsing issues
+		.then(res => {
+		  try {
+			const parsed = JSON.parse(res);
+			if (parsed.status === "success") {
+			  form.reset();
+			  popup.classList.add("show");
+			  setTimeout(() => popup.classList.remove("show"), 3000);
+			} else {
+			  alert("Blocked as spam.");
+			}
+		  } catch (err) {
+			console.error("Invalid JSON:", res);
+			alert("Unexpected response.");
+		  }
+		})
+		.catch(err => {
+		  console.error("Fetch failed:", err);
+		  alert("Something went wrong.");
+		});
       });
   });
 </script>
