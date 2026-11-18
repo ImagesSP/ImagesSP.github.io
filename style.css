@@ -567,3 +567,82 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ===== HEADER BUTTONS ===== */
+
+.header-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.header-btn img {
+  max-height: 65%;
+  width: auto;
+  max-width: 200px;
+  filter: brightness(0) invert(1);
+}
+
+.header-btn:hover {
+  opacity: 0.7;
+}
+
+.header-right { right: 30px; }
+.header-left  { left: 30px; }
+
+/* ===== COLOR SWATCHES ===== */
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 240px 20px 60px;
+}
+
+.swatch {
+  position: relative;
+  aspect-ratio: 1;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.swatch::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: white;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+
+.swatch:hover::after,
+.swatch:focus::after {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .header-right { right: 15px; }
+  .header-left  { left: 15px; }
+
+  .swatch-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 14px;
+    padding-top: 160px;
+  }
+}
